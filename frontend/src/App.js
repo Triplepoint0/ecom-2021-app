@@ -1,40 +1,41 @@
 import React from 'react';
-import Product from './components/Product';
-import data from './data';
+import { BrowserRouter, Route } from 'react-router-dom';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
+
+
+
 
 
 function App() {
   return (
-    <div className="grid-container">
-      <header className="row">
-        <div>
-          <a className="brand" href="/">amazona</a>
-        </div>
-        <div>
-          <a href="/cart">Cart</a>
-          <a href="/signin">Sign In</a>
-        </div>
-      </header>
-      <main>
-        <div>
-          <div className="row center">
 
-            {data.products.map(product => (
+    <BrowserRouter>
 
-              <Product key={product._id} product={product}></Product>
-
-
-            ))}
-
-
-
+      < div className="grid-container" >
+        <header className="row">
+          <div>
+            <a className="brand" href="/">amazona</a>
           </div>
-        </div>
-      </main>
-      <footer className="row center">All right reserved</footer>
-    </div>
+          <div>
+            <a href="/cart">Cart</a>
+            <a href="/signin">Sign In</a>
+          </div>
+        </header>
+        <main>
 
+          <Route path="/product/:id" component={ProductScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route>
+
+        </main>
+        <footer className="row center">All right reserved</footer>
+      </div >
+    </BrowserRouter >
   );
+
+  function newFunction() {
+    return;
+  }
 }
 
 export default App;
